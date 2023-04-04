@@ -34,6 +34,9 @@
             btnRemoveAllMod = new Button();
             btnRemoveOneMod = new Button();
             gbKWDs = new GroupBox();
+            pbStatus = new PictureBox();
+            btnClear = new Button();
+            btnApply = new Button();
             lblHeels = new Label();
             cbHeelsKillerHeels = new CheckBox();
             cbHeelsHighHeels = new CheckBox();
@@ -83,9 +86,6 @@
             cbArmorTopBreast = new CheckBox();
             cbArmorBottomFull = new CheckBox();
             cbArmorTopFull = new CheckBox();
-            btnClear = new Button();
-            btnApply = new Button();
-            pbStatus = new PictureBox();
             btnWrite = new Button();
             lblWatermark = new Label();
             lblVer = new Label();
@@ -242,12 +242,44 @@
             gbKWDs.Controls.Add(cbArmorTopBreast);
             gbKWDs.Controls.Add(cbArmorBottomFull);
             gbKWDs.Controls.Add(cbArmorTopFull);
+            gbKWDs.Enabled = false;
             gbKWDs.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
             gbKWDs.Location = new Point(12, 371);
             gbKWDs.Name = "gbKWDs";
             gbKWDs.Size = new Size(709, 254);
             gbKWDs.TabIndex = 10;
             gbKWDs.TabStop = false;
+            // 
+            // pbStatus
+            // 
+            pbStatus.BackColor = Color.Transparent;
+            pbStatus.BackgroundImage = Properties.Resources.Oxygen_go48;
+            pbStatus.BackgroundImageLayout = ImageLayout.Stretch;
+            pbStatus.Location = new Point(665, 181);
+            pbStatus.Name = "pbStatus";
+            pbStatus.Size = new Size(38, 37);
+            pbStatus.TabIndex = 50;
+            pbStatus.TabStop = false;
+            // 
+            // btnClear
+            // 
+            btnClear.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnClear.Location = new Point(536, 223);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(123, 25);
+            btnClear.TabIndex = 49;
+            btnClear.Text = "Clear all";
+            btnClear.UseVisualStyleBackColor = true;
+            // 
+            // btnApply
+            // 
+            btnApply.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnApply.Location = new Point(536, 181);
+            btnApply.Name = "btnApply";
+            btnApply.Size = new Size(123, 37);
+            btnApply.TabIndex = 48;
+            btnApply.Text = "Apply";
+            btnApply.UseVisualStyleBackColor = true;
             // 
             // lblHeels
             // 
@@ -738,35 +770,6 @@
             cbArmorTopFull.TabIndex = 0;
             cbArmorTopFull.Text = "Full";
             cbArmorTopFull.UseVisualStyleBackColor = true;
-            // 
-            // btnClear
-            // 
-            btnClear.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnClear.Location = new Point(536, 223);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(123, 25);
-            btnClear.TabIndex = 49;
-            btnClear.Text = "Clear all";
-            btnClear.UseVisualStyleBackColor = true;
-            // 
-            // btnApply
-            // 
-            btnApply.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnApply.Location = new Point(536, 181);
-            btnApply.Name = "btnApply";
-            btnApply.Size = new Size(123, 37);
-            btnApply.TabIndex = 48;
-            btnApply.Text = "Apply";
-            btnApply.UseVisualStyleBackColor = true;
-            // 
-            // pbStatus
-            // 
-            pbStatus.BackColor = Color.Transparent;
-            pbStatus.Location = new Point(665, 181);
-            pbStatus.Name = "pbStatus";
-            pbStatus.Size = new Size(38, 37);
-            pbStatus.TabIndex = 50;
-            pbStatus.TabStop = false;
             // 
             // btnWrite
             // 

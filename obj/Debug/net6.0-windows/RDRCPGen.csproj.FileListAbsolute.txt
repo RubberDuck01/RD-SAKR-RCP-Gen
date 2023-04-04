@@ -15,3 +15,4 @@ D:\WORK\Coding\Projects\RDRCPGen\obj\Debug\net6.0-windows\RDRCPGen.pdb
 D:\WORK\Coding\Projects\RDRCPGen\obj\Debug\net6.0-windows\RDRCPGen.genruntimeconfig.cache
 D:\WORK\Coding\Projects\RDRCPGen\obj\Debug\net6.0-windows\ref\RDRCPGen.dll
 D:\WORK\Coding\Projects\RDRCPGen\obj\Debug\net6.0-windows\RDRCPGen.FormMain.resources
+D:\WORK\Coding\Projects\RDRCPGen\obj\Debug\net6.0-windows\RDRCPGen.Properties.Resources.resources
