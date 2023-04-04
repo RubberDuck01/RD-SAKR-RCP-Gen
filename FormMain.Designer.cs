@@ -89,6 +89,7 @@
             btnWrite = new Button();
             lblWatermark = new Label();
             lblVer = new Label();
+            btnLoad = new Button();
             gbKWDs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbStatus).BeginInit();
             SuspendLayout();
@@ -126,7 +127,7 @@
             lblLoadedFile.AutoSize = true;
             lblLoadedFile.BackColor = Color.Transparent;
             lblLoadedFile.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblLoadedFile.Location = new Point(76, 9);
+            lblLoadedFile.Location = new Point(67, 4);
             lblLoadedFile.Name = "lblLoadedFile";
             lblLoadedFile.Size = new Size(52, 21);
             lblLoadedFile.TabIndex = 3;
@@ -253,7 +254,6 @@
             // pbStatus
             // 
             pbStatus.BackColor = Color.Transparent;
-            pbStatus.BackgroundImage = Properties.Resources.Oxygen_go48;
             pbStatus.BackgroundImageLayout = ImageLayout.Stretch;
             pbStatus.Location = new Point(665, 181);
             pbStatus.Name = "pbStatus";
@@ -773,6 +773,7 @@
             // 
             // btnWrite
             // 
+            btnWrite.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnWrite.Location = new Point(588, 26);
             btnWrite.Name = "btnWrite";
             btnWrite.Size = new Size(134, 29);
@@ -800,11 +801,22 @@
             lblVer.TabIndex = 13;
             lblVer.Text = "v1.0.0";
             // 
+            // btnLoad
+            // 
+            btnLoad.Location = new Point(191, 26);
+            btnLoad.Name = "btnLoad";
+            btnLoad.Size = new Size(134, 29);
+            btnLoad.TabIndex = 14;
+            btnLoad.Text = "Load CSV...";
+            btnLoad.UseVisualStyleBackColor = true;
+            btnLoad.Click += btnLoad_Click;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(734, 661);
+            Controls.Add(btnLoad);
             Controls.Add(lblVer);
             Controls.Add(lblWatermark);
             Controls.Add(btnWrite);
@@ -898,5 +910,6 @@
         private Button btnWrite;
         private Label lblWatermark;
         private Label lblVer;
+        private Button btnLoad;
     }
 }
