@@ -23,6 +23,7 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             lbOriginals = new ListBox();
             lbMods = new ListBox();
             lblLoadedFileText = new Label();
@@ -161,6 +162,7 @@
             btnAddOneOrg.TabIndex = 6;
             btnAddOneOrg.Text = ">";
             btnAddOneOrg.UseVisualStyleBackColor = true;
+            btnAddOneOrg.Click += btnAddOneOrg_Click;
             // 
             // btnAddAllOrg
             // 
@@ -170,6 +172,7 @@
             btnAddAllOrg.TabIndex = 7;
             btnAddAllOrg.Text = ">>>";
             btnAddAllOrg.UseVisualStyleBackColor = true;
+            btnAddAllOrg.Click += btnAddAllOrg_Click;
             // 
             // btnRemoveAllMod
             // 
@@ -179,6 +182,7 @@
             btnRemoveAllMod.TabIndex = 8;
             btnRemoveAllMod.Text = "<<<";
             btnRemoveAllMod.UseVisualStyleBackColor = true;
+            btnRemoveAllMod.Click += btnRemoveAllMod_Click;
             // 
             // btnRemoveOneMod
             // 
@@ -188,6 +192,7 @@
             btnRemoveOneMod.TabIndex = 9;
             btnRemoveOneMod.Text = "<";
             btnRemoveOneMod.UseVisualStyleBackColor = true;
+            btnRemoveOneMod.Click += btnRemoveOneMod_Click;
             // 
             // gbKWDs
             // 
@@ -831,6 +836,7 @@
             Controls.Add(lblLoadedFileText);
             Controls.Add(lbMods);
             Controls.Add(lbOriginals);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "FormMain";
             StartPosition = FormStartPosition.CenterScreen;
