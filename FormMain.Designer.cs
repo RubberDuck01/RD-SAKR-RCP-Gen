@@ -39,8 +39,8 @@
             btnClear = new Button();
             btnApply = new Button();
             lblHeels = new Label();
-            cbHeelsKillerHeels = new CheckBox();
-            cbHeelsHighHeels = new CheckBox();
+            cbHeelsKiller = new CheckBox();
+            cbHeelsHigh = new CheckBox();
             lblStockings = new Label();
             cbStockingsTagSheer = new CheckBox();
             cbStockingsTagShiny = new CheckBox();
@@ -81,9 +81,9 @@
             cbBraMicro = new CheckBox();
             cbBraBikini = new CheckBox();
             cbBraNormal = new CheckBox();
-            checkBox6 = new CheckBox();
+            cbArmorBottomLewd = new CheckBox();
             cbArmorTopLewd = new CheckBox();
-            checkBox4 = new CheckBox();
+            cbArmorBottomButt = new CheckBox();
             cbArmorTopBreast = new CheckBox();
             cbArmorBottomFull = new CheckBox();
             cbArmorTopFull = new CheckBox();
@@ -200,8 +200,8 @@
             gbKWDs.Controls.Add(btnClear);
             gbKWDs.Controls.Add(btnApply);
             gbKWDs.Controls.Add(lblHeels);
-            gbKWDs.Controls.Add(cbHeelsKillerHeels);
-            gbKWDs.Controls.Add(cbHeelsHighHeels);
+            gbKWDs.Controls.Add(cbHeelsKiller);
+            gbKWDs.Controls.Add(cbHeelsHigh);
             gbKWDs.Controls.Add(lblStockings);
             gbKWDs.Controls.Add(cbStockingsTagSheer);
             gbKWDs.Controls.Add(cbStockingsTagShiny);
@@ -242,9 +242,9 @@
             gbKWDs.Controls.Add(cbBraMicro);
             gbKWDs.Controls.Add(cbBraBikini);
             gbKWDs.Controls.Add(cbBraNormal);
-            gbKWDs.Controls.Add(checkBox6);
+            gbKWDs.Controls.Add(cbArmorBottomLewd);
             gbKWDs.Controls.Add(cbArmorTopLewd);
-            gbKWDs.Controls.Add(checkBox4);
+            gbKWDs.Controls.Add(cbArmorBottomButt);
             gbKWDs.Controls.Add(cbArmorTopBreast);
             gbKWDs.Controls.Add(cbArmorBottomFull);
             gbKWDs.Controls.Add(cbArmorTopFull);
@@ -296,25 +296,25 @@
             lblHeels.TabIndex = 47;
             lblHeels.Text = "Heels:";
             // 
-            // cbHeelsKillerHeels
+            // cbHeelsKiller
             // 
-            cbHeelsKillerHeels.AutoSize = true;
-            cbHeelsKillerHeels.Location = new Point(415, 181);
-            cbHeelsKillerHeels.Name = "cbHeelsKillerHeels";
-            cbHeelsKillerHeels.Size = new Size(81, 19);
-            cbHeelsKillerHeels.TabIndex = 46;
-            cbHeelsKillerHeels.Text = "KillerHeels";
-            cbHeelsKillerHeels.UseVisualStyleBackColor = true;
+            cbHeelsKiller.AutoSize = true;
+            cbHeelsKiller.Location = new Point(415, 181);
+            cbHeelsKiller.Name = "cbHeelsKiller";
+            cbHeelsKiller.Size = new Size(81, 19);
+            cbHeelsKiller.TabIndex = 46;
+            cbHeelsKiller.Text = "KillerHeels";
+            cbHeelsKiller.UseVisualStyleBackColor = true;
             // 
-            // cbHeelsHighHeels
+            // cbHeelsHigh
             // 
-            cbHeelsHighHeels.AutoSize = true;
-            cbHeelsHighHeels.Location = new Point(415, 156);
-            cbHeelsHighHeels.Name = "cbHeelsHighHeels";
-            cbHeelsHighHeels.Size = new Size(81, 19);
-            cbHeelsHighHeels.TabIndex = 45;
-            cbHeelsHighHeels.Text = "HighHeels";
-            cbHeelsHighHeels.UseVisualStyleBackColor = true;
+            cbHeelsHigh.AutoSize = true;
+            cbHeelsHigh.Location = new Point(415, 156);
+            cbHeelsHigh.Name = "cbHeelsHigh";
+            cbHeelsHigh.Size = new Size(81, 19);
+            cbHeelsHigh.TabIndex = 45;
+            cbHeelsHigh.Text = "HighHeels";
+            cbHeelsHigh.UseVisualStyleBackColor = true;
             // 
             // lblStockings
             // 
@@ -359,7 +359,7 @@
             // cbTopTagTight
             // 
             cbTopTagTight.AutoSize = true;
-            cbTopTagTight.Location = new Point(157, 228);
+            cbTopTagTight.Location = new Point(179, 156);
             cbTopTagTight.Name = "cbTopTagTight";
             cbTopTagTight.Size = new Size(58, 19);
             cbTopTagTight.TabIndex = 40;
@@ -716,15 +716,15 @@
             cbBraNormal.Text = "Normal";
             cbBraNormal.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // cbArmorBottomLewd
             // 
-            checkBox6.AutoSize = true;
-            checkBox6.Location = new Point(91, 87);
-            checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(54, 19);
-            checkBox6.TabIndex = 5;
-            checkBox6.Text = "Lewd";
-            checkBox6.UseVisualStyleBackColor = true;
+            cbArmorBottomLewd.AutoSize = true;
+            cbArmorBottomLewd.Location = new Point(91, 87);
+            cbArmorBottomLewd.Name = "cbArmorBottomLewd";
+            cbArmorBottomLewd.Size = new Size(54, 19);
+            cbArmorBottomLewd.TabIndex = 5;
+            cbArmorBottomLewd.Text = "Lewd";
+            cbArmorBottomLewd.UseVisualStyleBackColor = true;
             // 
             // cbArmorTopLewd
             // 
@@ -736,15 +736,15 @@
             cbArmorTopLewd.Text = "Lewd";
             cbArmorTopLewd.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // cbArmorBottomButt
             // 
-            checkBox4.AutoSize = true;
-            checkBox4.Location = new Point(91, 62);
-            checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(48, 19);
-            checkBox4.TabIndex = 3;
-            checkBox4.Text = "Butt";
-            checkBox4.UseVisualStyleBackColor = true;
+            cbArmorBottomButt.AutoSize = true;
+            cbArmorBottomButt.Location = new Point(91, 62);
+            cbArmorBottomButt.Name = "cbArmorBottomButt";
+            cbArmorBottomButt.Size = new Size(48, 19);
+            cbArmorBottomButt.TabIndex = 3;
+            cbArmorBottomButt.Text = "Butt";
+            cbArmorBottomButt.UseVisualStyleBackColor = true;
             // 
             // cbArmorTopBreast
             // 
@@ -865,9 +865,9 @@
         private CheckBox cbBraMicro;
         private CheckBox cbBraBikini;
         private CheckBox cbBraNormal;
-        private CheckBox checkBox6;
+        private CheckBox cbArmorBottomLewd;
         private CheckBox cbArmorTopLewd;
-        private CheckBox checkBox4;
+        private CheckBox cbArmorBottomButt;
         private CheckBox cbArmorTopBreast;
         private CheckBox cbArmorBottomFull;
         private CheckBox cbArmorTopFull;
@@ -887,8 +887,8 @@
         private Label lblPanty;
         private Label lblPants;
         private Label lblHeels;
-        private CheckBox cbHeelsKillerHeels;
-        private CheckBox cbHeelsHighHeels;
+        private CheckBox cbHeelsKiller;
+        private CheckBox cbHeelsHigh;
         private Label lblStockings;
         private CheckBox cbStockingsTagSheer;
         private CheckBox cbStockingsTagShiny;

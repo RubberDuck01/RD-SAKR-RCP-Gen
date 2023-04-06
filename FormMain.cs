@@ -3,12 +3,12 @@ using System.Windows.Forms;
 namespace RDRCPGen {
     public partial class FormMain : Form {
         // List of originals:
-        private List<GameObject> originals = new List<GameObject>();
-        private List<GameObjectModified> mods = new List<GameObjectModified>();
+        private List<Record> originals = new List<Record>();
+        private List<RecordModified> mods = new List<RecordModified>();
 
         public FormMain() {
             InitializeComponent();
-            
+
             btnAddOneOrg.Enabled = false;
             btnAddAllOrg.Enabled = false;
             btnRemoveOneMod.Enabled = false;
@@ -28,11 +28,11 @@ namespace RDRCPGen {
                 lblLoadedFile.Text = loadedFile;
 
                 // save read data:
-                originals = GameObject.ReadCSV(csvFilePath);
+                originals = Record.ReadCSV(csvFilePath);
 
                 // add to listbox (lbOriginals):
                 lbOriginals.Items.Clear();
-                foreach (GameObject item in originals) {
+                foreach (Record item in originals) {
                     lbOriginals.Items.Add(item.ToListBoxHuman());
                 }
             }
@@ -47,10 +47,10 @@ namespace RDRCPGen {
         private void btnAddOneOrg_Click(object sender, EventArgs e) {
             if (lbOriginals.SelectedIndex != -1) {
                 // get the selected item from lbOriginals
-                GameObject selectedOriginal = originals[lbOriginals.SelectedIndex];
+                Record selectedOriginal = originals[lbOriginals.SelectedIndex];
 
                 // create a new GameObjectModified object from the selected item
-                GameObjectModified modified = new GameObjectModified() {
+                RecordModified modified = new RecordModified() {
                     PluginName = selectedOriginal.PluginName,
                     FormID = selectedOriginal.FormID,
                     Item = selectedOriginal.Item
@@ -102,8 +102,8 @@ namespace RDRCPGen {
             btnAddAllOrg.Enabled = false;
 
             // Move all items to lbMods
-            foreach (GameObject org in originals) {
-                GameObjectModified mod = new GameObjectModified(org);
+            foreach (Record org in originals) {
+                RecordModified mod = new RecordModified(org);
                 mods.Add(mod);
                 lbMods.Items.Add("*" + mod.ToListBoxHuman());
             }
@@ -123,8 +123,8 @@ namespace RDRCPGen {
             btnRemoveAllMod.Enabled = false;
 
             // Move all items to lbOriginals
-            foreach (GameObjectModified mod in mods) {
-                GameObject org = new GameObject(mod);
+            foreach (RecordModified mod in mods) {
+                Record org = new Record(mod);
                 originals.Add(org);
                 lbOriginals.Items.Add(org.ToListBoxHuman());
             }

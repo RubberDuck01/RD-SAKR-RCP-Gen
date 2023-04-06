@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RDRCPGen {
-    public class GameObjectModified : GameObject {
+    public class RecordModified : Record {
         // list with keywords to apply:
         public List<string> Keywords {  get; set; }
 
-        public GameObjectModified() { 
+        public RecordModified() { 
             Keywords = new List<string>();
         }
 
-        public GameObjectModified(GameObject noKw) {
+        public RecordModified(Record noKw) {
             PluginName = noKw.PluginName;
             FormID = noKw.FormID;
             Item = noKw.Item;

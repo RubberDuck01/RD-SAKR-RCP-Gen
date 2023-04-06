@@ -5,25 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RDRCPGen {
-    public class GameObject {
+    public class Record {
         public string PluginName { get; set; }
         public string FormID { get; set; }
         public string Item { get; set; }
 
-        public GameObject() {
+        public Record() {
             PluginName = string.Empty;
             FormID = string.Empty;
             Item = string.Empty;
         }
 
-        public GameObject(GameObject gameObject) {
+        public Record(Record gameObject) {
             PluginName = gameObject.PluginName;
             FormID = gameObject.FormID;
             Item = gameObject.Item;
         }
 
-        public static List<GameObject> ReadCSV(string csvFilePath) {
-            List<GameObject> csvContent = new List<GameObject>();
+        public static List<Record> ReadCSV(string csvFilePath) {
+            List<Record> csvContent = new List<Record>();
 
             using (var reader = new StreamReader(csvFilePath)) {
                 while (!reader.EndOfStream) {
@@ -31,7 +31,7 @@ namespace RDRCPGen {
                     var values = line.Split(';');
 
                     // create new object:
-                    GameObject gameObject = new GameObject();
+                    Record gameObject = new Record();
                     gameObject.PluginName = values[0];
                     gameObject.FormID = values[1];
                     gameObject.Item = values[2];
