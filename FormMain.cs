@@ -8,133 +8,115 @@ namespace RDRCPGen {
 
         public FormMain() {
             InitializeComponent();
-
-            btnAddOneOrg.Enabled = false;
-            btnAddAllOrg.Enabled = false;
-            btnRemoveOneMod.Enabled = false;
-            btnRemoveAllMod.Enabled = false;
         }
 
         // Load CSV:
         private void btnLoad_Click(object sender, EventArgs e) {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "CSV Files (*.csv)|*.csv";
-            openFileDialog.Title = "Load CSV";
+            try {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "CSV Files (*.csv)|*.csv";
+                openFileDialog.Title = "Load CSV";
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK) {
-                // Load CSV, set label display:
-                string csvFilePath = openFileDialog.FileName;
-                string loadedFile = Path.GetFileName(csvFilePath);
-                lblLoadedFile.Text = loadedFile;
+                if (openFileDialog.ShowDialog() == DialogResult.OK) {
+                    // Load CSV, set label display:
+                    string csvFilePath = openFileDialog.FileName;
+                    string loadedFile = Path.GetFileName(csvFilePath);
+                    lblLoadedFile.Text = loadedFile;
 
-                // save read data:
-                originals = Record.ReadCSV(csvFilePath);
+                    // save read data:
+                    originals = Record.ReadCSV(csvFilePath);
 
-                // add to listbox (lbOriginals):
-                lbOriginals.Items.Clear();
-                foreach (Record item in originals) {
-                    lbOriginals.Items.Add(item.ToListBoxHuman());
+                    // add to listbox (lbOriginals):
+                    lbOriginals.Items.Clear();
+                    foreach (Record item in originals) {
+                        lbOriginals.Items.Add(item.ToListBoxHuman());
+                    }
+                }
+
+                gbKWDs.Enabled = true;
+            } catch (Exception ex) {
+                MessageBox.Show($"Something went wrong:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // sets all checkboxes to unchecked:
+        private void btnClear_Click(object sender, EventArgs e) {
+            ClearCBstatus();
+        }
+
+        // adds selected kwds to selected object in lbMods:
+        private void btnApply_Click(object sender, EventArgs e) {
+            Record original = originals[lbOriginals.SelectedIndex];
+            RecordModified modified = new RecordModified(original);
+
+            foreach (Control ctrl in gbKWDs.Controls) {
+                if (ctrl is CheckBox cb && cb.Checked) {
+                    modified.Keywords.Add(cb.Tag.ToString());
                 }
             }
 
-            btnAddOneOrg.Enabled = true;
-            btnAddAllOrg.Enabled = true;
+            mods.Add(modified);
 
-            gbKWDs.Enabled = true;
+            lbOriginals.Items.Remove(original);
+            lbMods.Items.Add(modified.ToListBoxHuman());
+
+            ClearCBstatus();
         }
 
-        // add highlighted to MODIFIED list:
-        private void btnAddOneOrg_Click(object sender, EventArgs e) {
-            if (lbOriginals.SelectedIndex != -1) {
-                // get the selected item from lbOriginals
-                Record selectedOriginal = originals[lbOriginals.SelectedIndex];
-
-                // create a new GameObjectModified object from the selected item
-                RecordModified modified = new RecordModified() {
-                    PluginName = selectedOriginal.PluginName,
-                    FormID = selectedOriginal.FormID,
-                    Item = selectedOriginal.Item
-                };
-
-                // add the modified object to lbMods
-                lbMods.Items.Add("*" + modified.ToListBoxHuman());
-
-                // remove the added item from lbOriginals:
-                lbOriginals.Items.Remove(selectedOriginal.ToListBoxHuman());
-            }
-
-            if (lbOriginals.Items.Count == 0) {
-                btnAddOneOrg.Enabled = false;
-                btnAddAllOrg.Enabled = false;
-            } else {
-                btnAddOneOrg.Enabled = true;
-                btnAddAllOrg.Enabled = true;
+        public void ClearCBstatus() {
+            foreach (var control in gbKWDs.Controls) {
+                if (control is CheckBox cb) {
+                    cb.Checked = false;
+                }
             }
         }
 
-        // remove selected back to ORIGINAL list:
-        private void btnRemoveOneMod_Click(object sender, EventArgs e) {
-            if (lbMods.SelectedItem != null) {
-                // Get the selected item from lbMods
-                var selectedItem = lbMods.SelectedItem as string;
-
-                // Add the selected item back to lbOriginals and update its display
-                lbOriginals.Items.Add(selectedItem);
-                lbOriginals.Sorted = true;
-
-                // Remove the selected item from lbMods
-                lbMods.Items.Remove(selectedItem);
-            }
-
-            if (lbMods.Items.Count == 0) {
-                btnRemoveOneMod.Enabled = false;
-                btnRemoveAllMod.Enabled = false;
-            } else {
-                btnRemoveOneMod.Enabled = true;
-                btnRemoveAllMod.Enabled = true;
-            }
+        private void lbOriginals_SelectedIndexChanged(object sender, EventArgs e) {
+            lblSelectedItem.Text = lbOriginals.SelectedItem.ToString();
         }
 
-        // adds everything from lbOriginals to lbMods:
-        private void btnAddAllOrg_Click(object sender, EventArgs e) {
-            // Disable btnAddOneOrg and btnAddAllOrg
-            btnAddOneOrg.Enabled = false;
-            btnAddAllOrg.Enabled = false;
+        private void btnWrite_Click(object sender, EventArgs e) {
+            // Show save file dialog to get path to save the INI file
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "INI Files|*.ini";
+            saveFileDialog.Title = "Save INI";
 
-            // Move all items to lbMods
-            foreach (Record org in originals) {
-                RecordModified mod = new RecordModified(org);
-                mods.Add(mod);
-                lbMods.Items.Add("*" + mod.ToListBoxHuman());
+            if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+                // Get the selected path and write to the file
+                using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName)) {
+                    sw.WriteLine("// INI automatically generated by RDRCPGen");
+                    sw.WriteLine("// By RubberDuck\n");
+                    // Loop through the mods list and write to the file
+                    foreach (RecordModified mod in mods) {
+                        // Write:
+                        sw.Write($"// {mod.Item}"); // comment
+                        // sw.WriteLine($"filterByArmors={mod.PluginName}|{mod.FormID}:keywordsToAdd=");
+                        sw.WriteLine(); // new line
+                        sw.Write("filterByArmors=" + mod.PluginName + "|" + mod.FormID + ":keywordsToAdd=");
+
+                        bool first = true;
+                        foreach (string kwd in mod.Keywords) {
+                            if (!first) {
+                                sw.Write(",");
+                            }
+                            sw.Write("SkimpyArmorKeywordResource.esm|" + kwd);
+                            first = false;
+                        }
+
+                        // Write the keywords
+                        /*
+                        for (int i = 0; i < mod.Keywords.Count; i++) {
+                            sw.WriteLine($"Keyword{i + 1}={mod.Keywords[i]}");
+                        }
+                        */
+
+                        // Add an empty line between each record
+                        sw.WriteLine();
+                    }
+                }
+
+                MessageBox.Show("INI file saved successfully!");
             }
-
-            // Clear lbOriginals
-            lbOriginals.Items.Clear();
-
-            // enable remove buttons:
-            btnRemoveOneMod.Enabled = true;
-            btnRemoveAllMod.Enabled = true;
-        }
-
-        // removes everything from lbMods and returns it to lbOriginals:
-        private void btnRemoveAllMod_Click(object sender, EventArgs e) {
-            // Disable btnRemoveOneMod and btnRemoveAllMod
-            btnRemoveOneMod.Enabled = false;
-            btnRemoveAllMod.Enabled = false;
-
-            // Move all items to lbOriginals
-            foreach (RecordModified mod in mods) {
-                Record org = new Record(mod);
-                originals.Add(org);
-                lbOriginals.Items.Add(org.ToListBoxHuman());
-            }
-
-            // Clear lbMods
-            lbMods.Items.Clear();
-
-            // Enable btnAddOneOrg
-            btnAddOneOrg.Enabled = true;
-            btnAddAllOrg.Enabled = true;
         }
     }
 }

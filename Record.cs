@@ -16,10 +16,16 @@ namespace RDRCPGen {
             Item = string.Empty;
         }
 
-        public Record(Record gameObject) {
-            PluginName = gameObject.PluginName;
-            FormID = gameObject.FormID;
-            Item = gameObject.Item;
+        public Record(string pluginName, string formID, string item) {
+            PluginName = pluginName;
+            FormID = formID;
+            Item = item;
+        }
+
+        public Record(RecordModified modifiedRecord) {
+            PluginName = modifiedRecord.PluginName;
+            FormID = modifiedRecord.FormID;
+            Item = modifiedRecord.Item;
         }
 
         public static List<Record> ReadCSV(string csvFilePath) {

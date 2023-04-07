@@ -10,6 +10,9 @@ namespace RDRCPGen {
         public List<string> Keywords {  get; set; }
 
         public RecordModified() { 
+            PluginName = string.Empty;
+            FormID = string.Empty;
+            Item = string.Empty;
             Keywords = new List<string>();
         }
 
@@ -17,6 +20,15 @@ namespace RDRCPGen {
             PluginName = noKw.PluginName;
             FormID = noKw.FormID;
             Item = noKw.Item;
+            Keywords = new List<string>();
+        }
+
+        public RecordModified(string pluginName, string formID, string item) : base(pluginName, formID, item) {
+            Keywords = new List<string>();
+        }
+
+        public string ToListBoxHuman() {
+            return $"[{PluginName}:{FormID}] {Item}";
         }
     }
 }
