@@ -89,6 +89,7 @@
             btnLoad = new Button();
             lblSelectedItem = new Label();
             lblSelectedItemText = new Label();
+            btnRemove = new Button();
             gbKWDs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbStatus).BeginInit();
             SuspendLayout();
@@ -99,7 +100,7 @@
             lbOriginals.ItemHeight = 15;
             lbOriginals.Location = new Point(12, 61);
             lbOriginals.Name = "lbOriginals";
-            lbOriginals.Size = new Size(391, 304);
+            lbOriginals.Size = new Size(411, 304);
             lbOriginals.TabIndex = 0;
             lbOriginals.SelectedIndexChanged += lbOriginals_SelectedIndexChanged;
             // 
@@ -108,9 +109,9 @@
             lbMods.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lbMods.FormattingEnabled = true;
             lbMods.ItemHeight = 15;
-            lbMods.Location = new Point(409, 61);
+            lbMods.Location = new Point(461, 61);
             lbMods.Name = "lbMods";
-            lbMods.Size = new Size(463, 304);
+            lbMods.Size = new Size(411, 304);
             lbMods.TabIndex = 1;
             // 
             // lblLoadedFileText
@@ -140,19 +141,19 @@
             lblOriginalText.BackColor = Color.Transparent;
             lblOriginalText.Location = new Point(12, 43);
             lblOriginalText.Name = "lblOriginalText";
-            lblOriginalText.Size = new Size(52, 15);
+            lblOriginalText.Size = new Size(115, 15);
             lblOriginalText.TabIndex = 4;
-            lblOriginalText.Text = "Original:";
+            lblOriginalText.Text = "Items in loaded CSV:";
             // 
             // lblModifiedText
             // 
             lblModifiedText.AutoSize = true;
             lblModifiedText.BackColor = Color.Transparent;
-            lblModifiedText.Location = new Point(408, 43);
+            lblModifiedText.Location = new Point(461, 43);
             lblModifiedText.Name = "lblModifiedText";
-            lblModifiedText.Size = new Size(58, 15);
+            lblModifiedText.Size = new Size(51, 15);
             lblModifiedText.TabIndex = 5;
-            lblModifiedText.Text = "Modified:";
+            lblModifiedText.Text = "To write:";
             // 
             // gbKWDs
             // 
@@ -217,9 +218,10 @@
             // 
             lblHeels.AutoSize = true;
             lblHeels.BackColor = Color.Transparent;
+            lblHeels.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblHeels.Location = new Point(91, 134);
             lblHeels.Name = "lblHeels";
-            lblHeels.Size = new Size(39, 15);
+            lblHeels.Size = new Size(41, 15);
             lblHeels.TabIndex = 47;
             lblHeels.Text = "Heels:";
             // 
@@ -249,9 +251,10 @@
             // 
             lblStockings.AutoSize = true;
             lblStockings.BackColor = Color.Transparent;
+            lblStockings.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblStockings.Location = new Point(6, 134);
             lblStockings.Name = "lblStockings";
-            lblStockings.Size = new Size(59, 15);
+            lblStockings.Size = new Size(64, 15);
             lblStockings.TabIndex = 44;
             lblStockings.Text = "Stockings:";
             // 
@@ -325,9 +328,10 @@
             // 
             lblTop.AutoSize = true;
             lblTop.BackColor = Color.Transparent;
+            lblTop.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblTop.Location = new Point(693, 19);
             lblTop.Name = "lblTop";
-            lblTop.Size = new Size(29, 15);
+            lblTop.Size = new Size(30, 15);
             lblTop.TabIndex = 37;
             lblTop.Text = "Top:";
             // 
@@ -401,9 +405,10 @@
             // 
             lblSkirt.AutoSize = true;
             lblSkirt.BackColor = Color.Transparent;
+            lblSkirt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblSkirt.Location = new Point(557, 19);
             lblSkirt.Name = "lblSkirt";
-            lblSkirt.Size = new Size(33, 15);
+            lblSkirt.Size = new Size(37, 15);
             lblSkirt.TabIndex = 30;
             lblSkirt.Text = "Skirt:";
             // 
@@ -477,6 +482,7 @@
             // 
             lblPants.AutoSize = true;
             lblPants.BackColor = Color.Transparent;
+            lblPants.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblPants.Location = new Point(399, 19);
             lblPants.Name = "lblPants";
             lblPants.Size = new Size(40, 15);
@@ -487,6 +493,7 @@
             // 
             lblPanty.AutoSize = true;
             lblPanty.BackColor = Color.Transparent;
+            lblPanty.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblPanty.Location = new Point(288, 19);
             lblPanty.Name = "lblPanty";
             lblPanty.Size = new Size(41, 15);
@@ -497,9 +504,10 @@
             // 
             lblArmorBottom.AutoSize = true;
             lblArmorBottom.BackColor = Color.Transparent;
+            lblArmorBottom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblArmorBottom.Location = new Point(91, 19);
             lblArmorBottom.Name = "lblArmorBottom";
-            lblArmorBottom.Size = new Size(82, 15);
+            lblArmorBottom.Size = new Size(92, 15);
             lblArmorBottom.TabIndex = 21;
             lblArmorBottom.Text = "Armor Bottom:";
             // 
@@ -507,9 +515,10 @@
             // 
             lblBra.AutoSize = true;
             lblBra.BackColor = Color.Transparent;
+            lblBra.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblBra.Location = new Point(194, 19);
             lblBra.Name = "lblBra";
-            lblBra.Size = new Size(28, 15);
+            lblBra.Size = new Size(29, 15);
             lblBra.TabIndex = 20;
             lblBra.Text = "Bra:";
             // 
@@ -517,9 +526,10 @@
             // 
             lblArmorTop.AutoSize = true;
             lblArmorTop.BackColor = Color.Transparent;
+            lblArmorTop.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblArmorTop.Location = new Point(6, 19);
             lblArmorTop.Name = "lblArmorTop";
-            lblArmorTop.Size = new Size(64, 15);
+            lblArmorTop.Size = new Size(69, 15);
             lblArmorTop.TabIndex = 11;
             lblArmorTop.Text = "Armor Top:";
             // 
@@ -756,9 +766,9 @@
             // btnClear
             // 
             btnClear.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnClear.Location = new Point(705, 642);
+            btnClear.Location = new Point(770, 642);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(123, 25);
+            btnClear.Size = new Size(58, 25);
             btnClear.TabIndex = 49;
             btnClear.Text = "Clear all";
             btnClear.UseVisualStyleBackColor = true;
@@ -790,7 +800,7 @@
             // 
             lblWatermark.AutoSize = true;
             lblWatermark.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblWatermark.Location = new Point(12, 646);
+            lblWatermark.Location = new Point(377, 642);
             lblWatermark.Name = "lblWatermark";
             lblWatermark.Size = new Size(135, 21);
             lblWatermark.TabIndex = 12;
@@ -800,11 +810,11 @@
             // 
             lblVer.AutoSize = true;
             lblVer.BackColor = Color.Transparent;
-            lblVer.Location = new Point(835, 4);
+            lblVer.Location = new Point(12, 652);
             lblVer.Name = "lblVer";
-            lblVer.Size = new Size(37, 15);
+            lblVer.Size = new Size(71, 15);
             lblVer.TabIndex = 13;
-            lblVer.Text = "v0.7.1";
+            lblVer.Text = "v0.7.1 - Beta";
             // 
             // btnLoad
             // 
@@ -837,11 +847,23 @@
             lblSelectedItemText.TabIndex = 51;
             lblSelectedItemText.Text = "Selected object:";
             // 
+            // btnRemove
+            // 
+            btnRemove.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRemove.Location = new Point(706, 642);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new Size(58, 25);
+            btnRemove.TabIndex = 52;
+            btnRemove.Text = "Remove";
+            btnRemove.UseVisualStyleBackColor = true;
+            btnRemove.Click += btnRemove_Click;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(884, 676);
+            Controls.Add(btnRemove);
             Controls.Add(lblSelectedItem);
             Controls.Add(lblSelectedItemText);
             Controls.Add(pbStatus);
@@ -937,5 +959,6 @@
         private Button btnLoad;
         private Label lblSelectedItem;
         private Label lblSelectedItemText;
+        private Button btnRemove;
     }
 }
