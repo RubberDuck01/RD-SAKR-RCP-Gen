@@ -100,7 +100,7 @@
             lbOriginals.ItemHeight = 15;
             lbOriginals.Location = new Point(12, 61);
             lbOriginals.Name = "lbOriginals";
-            lbOriginals.Size = new Size(411, 304);
+            lbOriginals.Size = new Size(416, 304);
             lbOriginals.TabIndex = 0;
             lbOriginals.SelectedIndexChanged += lbOriginals_SelectedIndexChanged;
             // 
@@ -109,9 +109,9 @@
             lbMods.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lbMods.FormattingEnabled = true;
             lbMods.ItemHeight = 15;
-            lbMods.Location = new Point(461, 61);
+            lbMods.Location = new Point(456, 61);
             lbMods.Name = "lbMods";
-            lbMods.Size = new Size(411, 304);
+            lbMods.Size = new Size(416, 304);
             lbMods.TabIndex = 1;
             // 
             // lblLoadedFileText
@@ -149,7 +149,7 @@
             // 
             lblModifiedText.AutoSize = true;
             lblModifiedText.BackColor = Color.Transparent;
-            lblModifiedText.Location = new Point(461, 43);
+            lblModifiedText.Location = new Point(456, 43);
             lblModifiedText.Name = "lblModifiedText";
             lblModifiedText.Size = new Size(51, 15);
             lblModifiedText.TabIndex = 5;
@@ -812,9 +812,9 @@
             lblVer.BackColor = Color.Transparent;
             lblVer.Location = new Point(12, 652);
             lblVer.Name = "lblVer";
-            lblVer.Size = new Size(71, 15);
+            lblVer.Size = new Size(128, 15);
             lblVer.TabIndex = 13;
-            lblVer.Text = "v0.7.1 - Beta";
+            lblVer.Text = "v0.7.1 - Beta (07/04/23)";
             // 
             // btnLoad
             // 
@@ -850,7 +850,7 @@
             // btnRemove
             // 
             btnRemove.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnRemove.Location = new Point(706, 642);
+            btnRemove.Location = new Point(705, 642);
             btnRemove.Name = "btnRemove";
             btnRemove.Size = new Size(58, 25);
             btnRemove.TabIndex = 52;
@@ -880,11 +880,12 @@
             Controls.Add(lblLoadedFileText);
             Controls.Add(lbMods);
             Controls.Add(lbOriginals);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "FormMain";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "RD RCPGen";
+            Text = "Rubber Duck's SAKR / RCP Gen v0.7.1";
             gbKWDs.ResumeLayout(false);
             gbKWDs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbStatus).EndInit();
