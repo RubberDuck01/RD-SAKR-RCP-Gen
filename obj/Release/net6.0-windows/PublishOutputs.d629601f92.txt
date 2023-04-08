@@ -1,0 +1,5 @@
+D:\WORK\Coding\Projects\RDRCPGen\bin\Release\net6.0-windows\app.publish\RDRCPGen.exe
+D:\WORK\Coding\Projects\RDRCPGen\bin\Release\net6.0-windows\app.publish\RDRCPGen.dll
+D:\WORK\Coding\Projects\RDRCPGen\bin\Release\net6.0-windows\app.publish\RDRCPGen.deps.json
+D:\WORK\Coding\Projects\RDRCPGen\bin\Release\net6.0-windows\app.publish\RDRCPGen.runtimeconfig.json
+D:\WORK\Coding\Projects\RDRCPGen\bin\Release\net6.0-windows\app.publish\RDRCPGen.pdb

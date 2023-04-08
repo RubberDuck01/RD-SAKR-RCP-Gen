@@ -1,0 +1,5 @@
+C:\Users\Rubber Duck\Desktop\sakr_patches\RDSAKRRCPGen\RDRCPGen.exe
+C:\Users\Rubber Duck\Desktop\sakr_patches\RDSAKRRCPGen\RDRCPGen.dll
+C:\Users\Rubber Duck\Desktop\sakr_patches\RDSAKRRCPGen\RDRCPGen.deps.json
+C:\Users\Rubber Duck\Desktop\sakr_patches\RDSAKRRCPGen\RDRCPGen.runtimeconfig.json
+C:\Users\Rubber Duck\Desktop\sakr_patches\RDSAKRRCPGen\RDRCPGen.pdb

@@ -294,7 +294,7 @@
             // cbTopTagTight
             // 
             cbTopTagTight.AutoSize = true;
-            cbTopTagTight.Location = new Point(693, 134);
+            cbTopTagTight.Location = new Point(693, 137);
             cbTopTagTight.Name = "cbTopTagTight";
             cbTopTagTight.Size = new Size(58, 19);
             cbTopTagTight.TabIndex = 40;
@@ -593,10 +593,10 @@
             cbPantsShort.AutoSize = true;
             cbPantsShort.Location = new Point(399, 62);
             cbPantsShort.Name = "cbPantsShort";
-            cbPantsShort.Size = new Size(53, 19);
+            cbPantsShort.Size = new Size(58, 19);
             cbPantsShort.TabIndex = 14;
             cbPantsShort.Tag = "00080F";
-            cbPantsShort.Text = "Short";
+            cbPantsShort.Text = "Shorts";
             cbPantsShort.UseVisualStyleBackColor = true;
             // 
             // cbPantsLong
@@ -885,7 +885,7 @@
             MaximizeBox = false;
             Name = "FormMain";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Rubber Duck's SAKR / RCP Gen v0.7.1";
+            Text = "Rubber Duck's SAKR/RCPGen v0.7.1";
             gbKWDs.ResumeLayout(false);
             gbKWDs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbStatus).EndInit();
