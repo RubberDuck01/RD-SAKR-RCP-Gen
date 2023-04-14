@@ -30,5 +30,9 @@ namespace RDRCPGen {
         public string ToListBoxHuman() {
             return $"[{PluginName}:{FormID}] {Item}";
         }
+
+        public string ToSelectedLbl() {
+            return $"[W] [{PluginName}] {Item}";
+        }
     }
 }

@@ -90,6 +90,7 @@
             lblSelectedItem = new Label();
             lblSelectedItemText = new Label();
             btnRemove = new Button();
+            cbKeep = new CheckBox();
             gbKWDs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbStatus).BeginInit();
             SuspendLayout();
@@ -113,6 +114,7 @@
             lbMods.Name = "lbMods";
             lbMods.Size = new Size(416, 304);
             lbMods.TabIndex = 1;
+            lbMods.SelectedIndexChanged += lbMods_SelectedIndexChanged;
             // 
             // lblLoadedFileText
             // 
@@ -207,7 +209,7 @@
             gbKWDs.Controls.Add(cbArmorBottomFull);
             gbKWDs.Controls.Add(cbArmorTopFull);
             gbKWDs.Enabled = false;
-            gbKWDs.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            gbKWDs.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             gbKWDs.Location = new Point(12, 371);
             gbKWDs.Name = "gbKWDs";
             gbKWDs.Size = new Size(860, 227);
@@ -218,7 +220,7 @@
             // 
             lblHeels.AutoSize = true;
             lblHeels.BackColor = Color.Transparent;
-            lblHeels.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeels.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             lblHeels.Location = new Point(91, 134);
             lblHeels.Name = "lblHeels";
             lblHeels.Size = new Size(41, 15);
@@ -235,6 +237,7 @@
             cbHeelsKiller.Tag = "0026B5";
             cbHeelsKiller.Text = "KillerHeels";
             cbHeelsKiller.UseVisualStyleBackColor = true;
+            cbHeelsKiller.CheckStateChanged += checkBox_CheckedChanged;
             // 
             // cbHeelsHigh
             // 
@@ -246,12 +249,13 @@
             cbHeelsHigh.Tag = "0026B4";
             cbHeelsHigh.Text = "HighHeels";
             cbHeelsHigh.UseVisualStyleBackColor = true;
+            cbHeelsHigh.CheckedChanged += checkBox_CheckedChanged;
             // 
             // lblStockings
             // 
             lblStockings.AutoSize = true;
             lblStockings.BackColor = Color.Transparent;
-            lblStockings.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblStockings.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             lblStockings.Location = new Point(6, 134);
             lblStockings.Name = "lblStockings";
             lblStockings.Size = new Size(64, 15);
@@ -268,6 +272,7 @@
             cbStockingsTagSheer.Tag = "0026B3";
             cbStockingsTagSheer.Text = "*Sheer";
             cbStockingsTagSheer.UseVisualStyleBackColor = true;
+            cbStockingsTagSheer.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbStockingsTagShiny
             // 
@@ -279,17 +284,19 @@
             cbStockingsTagShiny.Tag = "0026B2";
             cbStockingsTagShiny.Text = "*Shiny";
             cbStockingsTagShiny.UseVisualStyleBackColor = true;
+            cbStockingsTagShiny.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbStockingsLong
             // 
             cbStockingsLong.AutoSize = true;
             cbStockingsLong.Location = new Point(6, 152);
             cbStockingsLong.Name = "cbStockingsLong";
-            cbStockingsLong.Size = new Size(52, 19);
+            cbStockingsLong.Size = new Size(53, 19);
             cbStockingsLong.TabIndex = 41;
             cbStockingsLong.Tag = "0026B1";
             cbStockingsLong.Text = "Long";
             cbStockingsLong.UseVisualStyleBackColor = true;
+            cbStockingsLong.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbTopTagTight
             // 
@@ -301,6 +308,7 @@
             cbTopTagTight.Tag = "000821";
             cbTopTagTight.Text = "*Tight";
             cbTopTagTight.UseVisualStyleBackColor = true;
+            cbTopTagTight.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbTopTagSheer
             // 
@@ -312,23 +320,25 @@
             cbTopTagSheer.Tag = "000822";
             cbTopTagSheer.Text = "*Sheer";
             cbTopTagSheer.UseVisualStyleBackColor = true;
+            cbTopTagSheer.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbTopTagTankTop
             // 
             cbTopTagTankTop.AutoSize = true;
             cbTopTagTankTop.Location = new Point(778, 87);
             cbTopTagTankTop.Name = "cbTopTagTankTop";
-            cbTopTagTankTop.Size = new Size(76, 19);
+            cbTopTagTankTop.Size = new Size(74, 19);
             cbTopTagTankTop.TabIndex = 38;
             cbTopTagTankTop.Tag = "00081E";
             cbTopTagTankTop.Text = "*TankTop";
             cbTopTagTankTop.UseVisualStyleBackColor = true;
+            cbTopTagTankTop.CheckedChanged += checkBox_CheckedChanged;
             // 
             // lblTop
             // 
             lblTop.AutoSize = true;
             lblTop.BackColor = Color.Transparent;
-            lblTop.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTop.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             lblTop.Location = new Point(693, 19);
             lblTop.Name = "lblTop";
             lblTop.Size = new Size(30, 15);
@@ -340,55 +350,60 @@
             cbTopTagSideBoob.AutoSize = true;
             cbTopTagSideBoob.Location = new Point(778, 62);
             cbTopTagSideBoob.Name = "cbTopTagSideBoob";
-            cbTopTagSideBoob.Size = new Size(79, 19);
+            cbTopTagSideBoob.Size = new Size(81, 19);
             cbTopTagSideBoob.TabIndex = 36;
             cbTopTagSideBoob.Tag = "000820";
             cbTopTagSideBoob.Text = "*SideBoob";
             cbTopTagSideBoob.UseVisualStyleBackColor = true;
+            cbTopTagSideBoob.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbTopTagHalter
             // 
             cbTopTagHalter.AutoSize = true;
             cbTopTagHalter.Location = new Point(778, 37);
             cbTopTagHalter.Name = "cbTopTagHalter";
-            cbTopTagHalter.Size = new Size(64, 19);
+            cbTopTagHalter.Size = new Size(63, 19);
             cbTopTagHalter.TabIndex = 35;
             cbTopTagHalter.Tag = "00081F";
             cbTopTagHalter.Text = "*Halter";
             cbTopTagHalter.UseVisualStyleBackColor = true;
+            cbTopTagHalter.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbTopTagCropTop
             // 
             cbTopTagCropTop.AutoSize = true;
             cbTopTagCropTop.Location = new Point(693, 112);
             cbTopTagCropTop.Name = "cbTopTagCropTop";
-            cbTopTagCropTop.Size = new Size(75, 19);
+            cbTopTagCropTop.Size = new Size(76, 19);
             cbTopTagCropTop.TabIndex = 34;
             cbTopTagCropTop.Tag = "00081D";
             cbTopTagCropTop.Text = "*CropTop";
             cbTopTagCropTop.UseVisualStyleBackColor = true;
+            cbTopTagCropTop.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbTopLowCutCleavage
             // 
             cbTopLowCutCleavage.AutoSize = true;
             cbTopLowCutCleavage.Location = new Point(693, 87);
             cbTopLowCutCleavage.Name = "cbTopLowCutCleavage";
-            cbTopLowCutCleavage.Size = new Size(71, 19);
+            cbTopLowCutCleavage.Size = new Size(72, 19);
             cbTopLowCutCleavage.TabIndex = 33;
             cbTopLowCutCleavage.Tag = "00081C";
             cbTopLowCutCleavage.Text = "Low-Cut";
             cbTopLowCutCleavage.UseVisualStyleBackColor = true;
+            cbTopLowCutCleavage.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbTopCleavage
             // 
             cbTopCleavage.AutoSize = true;
             cbTopCleavage.Location = new Point(693, 62);
             cbTopCleavage.Name = "cbTopCleavage";
-            cbTopCleavage.Size = new Size(76, 19);
+            cbTopCleavage.Size = new Size(74, 19);
             cbTopCleavage.TabIndex = 32;
             cbTopCleavage.Tag = "00081B";
             cbTopCleavage.Text = "Cleavage";
             cbTopCleavage.UseVisualStyleBackColor = true;
+            cbTopCleavage.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbTopFull
             // 
@@ -400,12 +415,13 @@
             cbTopFull.Tag = "00081A";
             cbTopFull.Text = "Full";
             cbTopFull.UseVisualStyleBackColor = true;
+            cbTopFull.CheckedChanged += checkBox_CheckedChanged;
             // 
             // lblSkirt
             // 
             lblSkirt.AutoSize = true;
             lblSkirt.BackColor = Color.Transparent;
-            lblSkirt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblSkirt.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             lblSkirt.Location = new Point(557, 19);
             lblSkirt.Name = "lblSkirt";
             lblSkirt.Size = new Size(37, 15);
@@ -422,6 +438,7 @@
             cbSkirtTagTight.Tag = "000818";
             cbSkirtTagTight.Text = "*Tight";
             cbSkirtTagTight.UseVisualStyleBackColor = true;
+            cbSkirtTagTight.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbSkirtTagSheer
             // 
@@ -433,56 +450,61 @@
             cbSkirtTagSheer.Tag = "000819";
             cbSkirtTagSheer.Text = "*Sheer";
             cbSkirtTagSheer.UseVisualStyleBackColor = true;
+            cbSkirtTagSheer.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbSkirtMicro
             // 
             cbSkirtMicro.AutoSize = true;
             cbSkirtMicro.Location = new Point(557, 112);
             cbSkirtMicro.Name = "cbSkirtMicro";
-            cbSkirtMicro.Size = new Size(54, 19);
+            cbSkirtMicro.Size = new Size(57, 19);
             cbSkirtMicro.TabIndex = 27;
             cbSkirtMicro.Tag = "000817";
             cbSkirtMicro.Text = "Micro";
             cbSkirtMicro.UseVisualStyleBackColor = true;
+            cbSkirtMicro.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbSkirtMini
             // 
             cbSkirtMini.AutoSize = true;
             cbSkirtMini.Location = new Point(557, 87);
             cbSkirtMini.Name = "cbSkirtMini";
-            cbSkirtMini.Size = new Size(49, 19);
+            cbSkirtMini.Size = new Size(50, 19);
             cbSkirtMini.TabIndex = 26;
             cbSkirtMini.Tag = "000816";
             cbSkirtMini.Text = "Mini";
             cbSkirtMini.UseVisualStyleBackColor = true;
+            cbSkirtMini.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbSkirtShort
             // 
             cbSkirtShort.AutoSize = true;
             cbSkirtShort.Location = new Point(557, 62);
             cbSkirtShort.Name = "cbSkirtShort";
-            cbSkirtShort.Size = new Size(53, 19);
+            cbSkirtShort.Size = new Size(54, 19);
             cbSkirtShort.TabIndex = 25;
             cbSkirtShort.Tag = "000815";
             cbSkirtShort.Text = "Short";
             cbSkirtShort.UseVisualStyleBackColor = true;
+            cbSkirtShort.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbSkirtLong
             // 
             cbSkirtLong.AutoSize = true;
             cbSkirtLong.Location = new Point(557, 37);
             cbSkirtLong.Name = "cbSkirtLong";
-            cbSkirtLong.Size = new Size(52, 19);
+            cbSkirtLong.Size = new Size(53, 19);
             cbSkirtLong.TabIndex = 24;
             cbSkirtLong.Tag = "000814";
             cbSkirtLong.Text = "Long";
             cbSkirtLong.UseVisualStyleBackColor = true;
+            cbSkirtLong.CheckedChanged += checkBox_CheckedChanged;
             // 
             // lblPants
             // 
             lblPants.AutoSize = true;
             lblPants.BackColor = Color.Transparent;
-            lblPants.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPants.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             lblPants.Location = new Point(399, 19);
             lblPants.Name = "lblPants";
             lblPants.Size = new Size(40, 15);
@@ -493,7 +515,7 @@
             // 
             lblPanty.AutoSize = true;
             lblPanty.BackColor = Color.Transparent;
-            lblPanty.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPanty.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             lblPanty.Location = new Point(288, 19);
             lblPanty.Name = "lblPanty";
             lblPanty.Size = new Size(41, 15);
@@ -504,7 +526,7 @@
             // 
             lblArmorBottom.AutoSize = true;
             lblArmorBottom.BackColor = Color.Transparent;
-            lblArmorBottom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblArmorBottom.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             lblArmorBottom.Location = new Point(91, 19);
             lblArmorBottom.Name = "lblArmorBottom";
             lblArmorBottom.Size = new Size(92, 15);
@@ -515,7 +537,7 @@
             // 
             lblBra.AutoSize = true;
             lblBra.BackColor = Color.Transparent;
-            lblBra.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblBra.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             lblBra.Location = new Point(194, 19);
             lblBra.Name = "lblBra";
             lblBra.Size = new Size(29, 15);
@@ -526,7 +548,7 @@
             // 
             lblArmorTop.AutoSize = true;
             lblArmorTop.BackColor = Color.Transparent;
-            lblArmorTop.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblArmorTop.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             lblArmorTop.Location = new Point(6, 19);
             lblArmorTop.Name = "lblArmorTop";
             lblArmorTop.Size = new Size(69, 15);
@@ -543,6 +565,7 @@
             cbPantyTagSheer.Tag = "0026B0";
             cbPantyTagSheer.Text = "*Sheer";
             cbPantyTagSheer.UseVisualStyleBackColor = true;
+            cbPantyTagSheer.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbPantsTagTight
             // 
@@ -554,6 +577,7 @@
             cbPantsTagTight.Tag = "000812";
             cbPantsTagTight.Text = "*Tight";
             cbPantsTagTight.UseVisualStyleBackColor = true;
+            cbPantsTagTight.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbPantsTagSheer
             // 
@@ -565,17 +589,19 @@
             cbPantsTagSheer.Tag = "000813";
             cbPantsTagSheer.Text = "*Sheer";
             cbPantsTagSheer.UseVisualStyleBackColor = true;
+            cbPantsTagSheer.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbPantsThongs
             // 
             cbPantsThongs.AutoSize = true;
             cbPantsThongs.Location = new Point(399, 112);
             cbPantsThongs.Name = "cbPantsThongs";
-            cbPantsThongs.Size = new Size(64, 19);
+            cbPantsThongs.Size = new Size(65, 19);
             cbPantsThongs.TabIndex = 16;
             cbPantsThongs.Tag = "000811";
             cbPantsThongs.Text = "Thongs";
             cbPantsThongs.UseVisualStyleBackColor = true;
+            cbPantsThongs.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbPantsHotPants
             // 
@@ -587,28 +613,31 @@
             cbPantsHotPants.Tag = "000810";
             cbPantsHotPants.Text = "HotPants";
             cbPantsHotPants.UseVisualStyleBackColor = true;
+            cbPantsHotPants.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbPantsShort
             // 
             cbPantsShort.AutoSize = true;
             cbPantsShort.Location = new Point(399, 62);
             cbPantsShort.Name = "cbPantsShort";
-            cbPantsShort.Size = new Size(58, 19);
+            cbPantsShort.Size = new Size(59, 19);
             cbPantsShort.TabIndex = 14;
             cbPantsShort.Tag = "00080F";
             cbPantsShort.Text = "Shorts";
             cbPantsShort.UseVisualStyleBackColor = true;
+            cbPantsShort.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbPantsLong
             // 
             cbPantsLong.AutoSize = true;
             cbPantsLong.Location = new Point(399, 37);
             cbPantsLong.Name = "cbPantsLong";
-            cbPantsLong.Size = new Size(52, 19);
+            cbPantsLong.Size = new Size(53, 19);
             cbPantsLong.TabIndex = 13;
             cbPantsLong.Tag = "00080E";
             cbPantsLong.Text = "Long";
             cbPantsLong.UseVisualStyleBackColor = true;
+            cbPantsLong.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbPantyGString
             // 
@@ -620,28 +649,31 @@
             cbPantyGString.Tag = "00080A";
             cbPantyGString.Text = "GString";
             cbPantyGString.UseVisualStyleBackColor = true;
+            cbPantyGString.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbPantyThong
             // 
             cbPantyThong.AutoSize = true;
             cbPantyThong.Location = new Point(288, 62);
             cbPantyThong.Name = "cbPantyThong";
-            cbPantyThong.Size = new Size(59, 19);
+            cbPantyThong.Size = new Size(60, 19);
             cbPantyThong.TabIndex = 11;
             cbPantyThong.Tag = "000809";
             cbPantyThong.Text = "Thong";
             cbPantyThong.UseVisualStyleBackColor = true;
+            cbPantyThong.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbPantyNormal
             // 
             cbPantyNormal.AutoSize = true;
             cbPantyNormal.Location = new Point(288, 37);
             cbPantyNormal.Name = "cbPantyNormal";
-            cbPantyNormal.Size = new Size(65, 19);
+            cbPantyNormal.Size = new Size(66, 19);
             cbPantyNormal.TabIndex = 10;
             cbPantyNormal.Tag = "000808";
             cbPantyNormal.Text = "Normal";
             cbPantyNormal.UseVisualStyleBackColor = true;
+            cbPantyNormal.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbBraTagSheer
             // 
@@ -653,17 +685,19 @@
             cbBraTagSheer.Tag = "0026AF";
             cbBraTagSheer.Text = "*Sheer";
             cbBraTagSheer.UseVisualStyleBackColor = true;
+            cbBraTagSheer.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbBraMicro
             // 
             cbBraMicro.AutoSize = true;
             cbBraMicro.Location = new Point(194, 87);
             cbBraMicro.Name = "cbBraMicro";
-            cbBraMicro.Size = new Size(54, 19);
+            cbBraMicro.Size = new Size(57, 19);
             cbBraMicro.TabIndex = 8;
             cbBraMicro.Tag = "00080D";
             cbBraMicro.Text = "Micro";
             cbBraMicro.UseVisualStyleBackColor = true;
+            cbBraMicro.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbBraBikini
             // 
@@ -675,17 +709,19 @@
             cbBraBikini.Tag = "00080C";
             cbBraBikini.Text = "Bikini";
             cbBraBikini.UseVisualStyleBackColor = true;
+            cbBraBikini.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbBraNormal
             // 
             cbBraNormal.AutoSize = true;
             cbBraNormal.Location = new Point(194, 37);
             cbBraNormal.Name = "cbBraNormal";
-            cbBraNormal.Size = new Size(65, 19);
+            cbBraNormal.Size = new Size(66, 19);
             cbBraNormal.TabIndex = 6;
             cbBraNormal.Tag = "00080B";
             cbBraNormal.Text = "Normal";
             cbBraNormal.UseVisualStyleBackColor = true;
+            cbBraNormal.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbArmorBottomLewd
             // 
@@ -697,6 +733,7 @@
             cbArmorBottomLewd.Tag = "000807";
             cbArmorBottomLewd.Text = "Lewd";
             cbArmorBottomLewd.UseVisualStyleBackColor = true;
+            cbArmorBottomLewd.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbArmorTopLewd
             // 
@@ -708,6 +745,7 @@
             cbArmorTopLewd.Tag = "000804";
             cbArmorTopLewd.Text = "Lewd";
             cbArmorTopLewd.UseVisualStyleBackColor = true;
+            cbArmorTopLewd.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbArmorBottomButt
             // 
@@ -719,17 +757,19 @@
             cbArmorBottomButt.Tag = "000806";
             cbArmorBottomButt.Text = "Butt";
             cbArmorBottomButt.UseVisualStyleBackColor = true;
+            cbArmorBottomButt.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbArmorTopBreast
             // 
             cbArmorTopBreast.AutoSize = true;
             cbArmorTopBreast.Location = new Point(6, 62);
             cbArmorTopBreast.Name = "cbArmorTopBreast";
-            cbArmorTopBreast.Size = new Size(59, 19);
+            cbArmorTopBreast.Size = new Size(58, 19);
             cbArmorTopBreast.TabIndex = 2;
             cbArmorTopBreast.Tag = "000803";
             cbArmorTopBreast.Text = "Breast";
             cbArmorTopBreast.UseVisualStyleBackColor = true;
+            cbArmorTopBreast.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbArmorBottomFull
             // 
@@ -741,6 +781,7 @@
             cbArmorBottomFull.Tag = "000805";
             cbArmorBottomFull.Text = "Full";
             cbArmorBottomFull.UseVisualStyleBackColor = true;
+            cbArmorBottomFull.CheckedChanged += checkBox_CheckedChanged;
             // 
             // cbArmorTopFull
             // 
@@ -752,6 +793,7 @@
             cbArmorTopFull.Tag = "000802";
             cbArmorTopFull.Text = "Full";
             cbArmorTopFull.UseVisualStyleBackColor = true;
+            cbArmorTopFull.CheckedChanged += checkBox_CheckedChanged;
             // 
             // pbStatus
             // 
@@ -766,9 +808,9 @@
             // btnClear
             // 
             btnClear.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnClear.Location = new Point(770, 642);
+            btnClear.Location = new Point(762, 642);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(58, 25);
+            btnClear.Size = new Size(66, 25);
             btnClear.TabIndex = 49;
             btnClear.Text = "Clear all";
             btnClear.UseVisualStyleBackColor = true;
@@ -777,9 +819,9 @@
             // btnApply
             // 
             btnApply.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnApply.Location = new Point(705, 604);
+            btnApply.Location = new Point(694, 604);
             btnApply.Name = "btnApply";
-            btnApply.Size = new Size(123, 37);
+            btnApply.Size = new Size(134, 37);
             btnApply.TabIndex = 48;
             btnApply.Text = "Apply";
             btnApply.UseVisualStyleBackColor = true;
@@ -812,9 +854,9 @@
             lblVer.BackColor = Color.Transparent;
             lblVer.Location = new Point(12, 652);
             lblVer.Name = "lblVer";
-            lblVer.Size = new Size(128, 15);
+            lblVer.Size = new Size(94, 15);
             lblVer.TabIndex = 13;
-            lblVer.Text = "v0.7.1 - Beta (07/04/23)";
+            lblVer.Text = "v0.7.4 (14/04/23)";
             // 
             // btnLoad
             // 
@@ -831,7 +873,7 @@
             lblSelectedItem.AutoSize = true;
             lblSelectedItem.BackColor = Color.Transparent;
             lblSelectedItem.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblSelectedItem.Location = new Point(103, 604);
+            lblSelectedItem.Location = new Point(12, 620);
             lblSelectedItem.Name = "lblSelectedItem";
             lblSelectedItem.Size = new Size(61, 21);
             lblSelectedItem.TabIndex = 51;
@@ -850,19 +892,30 @@
             // btnRemove
             // 
             btnRemove.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnRemove.Location = new Point(705, 642);
+            btnRemove.Location = new Point(694, 642);
             btnRemove.Name = "btnRemove";
-            btnRemove.Size = new Size(58, 25);
+            btnRemove.Size = new Size(66, 25);
             btnRemove.TabIndex = 52;
             btnRemove.Text = "Remove";
             btnRemove.UseVisualStyleBackColor = true;
             btnRemove.Click += btnRemove_Click;
+            // 
+            // cbKeep
+            // 
+            cbKeep.AutoSize = true;
+            cbKeep.Location = new Point(586, 614);
+            cbKeep.Name = "cbKeep";
+            cbKeep.Size = new Size(102, 19);
+            cbKeep.TabIndex = 53;
+            cbKeep.Text = "Keep selection";
+            cbKeep.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(884, 676);
+            Controls.Add(cbKeep);
             Controls.Add(btnRemove);
             Controls.Add(lblSelectedItem);
             Controls.Add(lblSelectedItemText);
@@ -885,7 +938,7 @@
             MaximizeBox = false;
             Name = "FormMain";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Rubber Duck's SAKR/RCPGen v0.7.1";
+            Text = "Rubber Duck's SAKR/RCPGen v0.7.4";
             gbKWDs.ResumeLayout(false);
             gbKWDs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbStatus).EndInit();
@@ -961,5 +1014,6 @@
         private Label lblSelectedItem;
         private Label lblSelectedItemText;
         private Button btnRemove;
+        private CheckBox cbKeep;
     }
 }
