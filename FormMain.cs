@@ -68,6 +68,18 @@ namespace RDRCPGen {
                     ClearCBstatus();
                 }
 
+                // auto increment:
+                if (lbOriginals.Items.Count == 0) {
+                    MessageBox.Show("No more items");
+                    return;
+                }
+
+                if (lbOriginals.SelectedIndex < lbOriginals.Items.Count - 1) {
+                    lbOriginals.SelectedIndex++;
+                } else {
+                    MessageBox.Show("Reached end of CSV.");
+                }
+
             } catch {
                 MessageBox.Show("Cannot apply anything. Load CSV, select the item, select the keywords you want for the item, and then select 'Apply'!", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 pbStatus.BackgroundImage = Resources.Oxygen_notok48;
@@ -109,6 +121,21 @@ namespace RDRCPGen {
 
             if (selected != null) {
                 lblSelectedItem.Text = $"[W] [{selected.PluginName}] {selected.Item}";
+            }
+
+            // upon selection, check all the checkboxes with selected kwds
+            foreach (Control ctrl in gbKWDs.Controls) {
+                if (ctrl is CheckBox cb) {
+                    cb.Checked = false;
+                }
+            }
+
+            foreach (string kwd in selected.Keywords) {
+                foreach (Control ctrl in gbKWDs.Controls) {
+                    if (ctrl is CheckBox cb && cb.Tag.ToString() == kwd) {
+                        cb.Checked = true;
+                    }
+                }
             }
         }
 
