@@ -5,7 +5,10 @@ namespace RDRCPGen {
     public partial class FormMain : Form {
         // List of originals:
         private List<Record> originals = new List<Record>();
+        // List of modified:
         private List<RecordModified> mods = new List<RecordModified>();
+        // check whether lbOriginals was selected last:
+        private bool lbOriginalsSelectedLast = false;
 
         public FormMain() {
             InitializeComponent();
@@ -51,7 +54,21 @@ namespace RDRCPGen {
             try {
                 Record original = originals[lbOriginals.SelectedIndex];
                 RecordModified modified = new RecordModified(original);
+                RecordModified existing = mods.FirstOrDefault(m => m.FormID == original.FormID);
 
+                // check if already exists:
+                if (existing != null) {
+                    var result = MessageBox.Show($"Looks like you've already added keywords to\n{existing.Item} (FormID: {existing.FormID}).\n\nDo you want to overwrite the previous record?", "RD's SAKR/RCP Gen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.No) {
+                        return;
+                    }
+
+                    mods.Remove(existing);
+                    lbMods.Items.Remove(existing.ToListBoxHuman().ToString());
+                }
+                
+                // add modified:
                 foreach (Control ctrl in gbKWDs.Controls) {
                     if (ctrl is CheckBox cb && cb.Checked) {
                         modified.Keywords.Add(cb.Tag.ToString());
@@ -67,21 +84,21 @@ namespace RDRCPGen {
                 if (!cbKeep.Checked) {
                     ClearCBstatus();
                 }
-
+                
                 // auto increment:
                 if (lbOriginals.Items.Count == 0) {
-                    MessageBox.Show("No more items");
+                    MessageBox.Show("Couldn't find any items in this CSV. Did you export the CSV properly, using 'RD_Export_FormIDs_SAKR.pas' script?\n\nTry again and if this message still shows up, report the issue immediately.\n\nThanks!", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (lbOriginals.SelectedIndex < lbOriginals.Items.Count - 1) {
                     lbOriginals.SelectedIndex++;
                 } else {
-                    MessageBox.Show("Reached end of CSV.");
+                    MessageBox.Show("Reached end of loaded CSV.", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
-            } catch {
-                MessageBox.Show("Cannot apply anything. Load CSV, select the item, select the keywords you want for the item, and then select 'Apply'!", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } catch (Exception ex) {
+                MessageBox.Show($"Something went wrong...\n\nMore info:\n{ex.Message}", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 pbStatus.BackgroundImage = Resources.Oxygen_notok48;
             }
         }
@@ -108,6 +125,12 @@ namespace RDRCPGen {
             string selectedStr = lbOriginals.SelectedItem as string;
             Record selected = originals.FirstOrDefault(x => x.ToListBoxHuman() == selectedStr);
 
+            // set selected last to true:
+            if (!lbOriginalsSelectedLast) {
+                lbMods.ClearSelected();
+                lbOriginalsSelectedLast = true;
+            }
+
             if (selected != null) {
                 lblSelectedItem.Text = $"[{selected.PluginName}] {selected.Item}";
             }
@@ -119,21 +142,28 @@ namespace RDRCPGen {
             string selectedStr = lbMods.SelectedItem as string;
             RecordModified selected = mods.FirstOrDefault(x => x.ToListBoxHuman() == selectedStr);
 
+            // set selected last to false:
+            if (lbOriginalsSelectedLast) {
+                lbOriginals.ClearSelected();
+                lbOriginalsSelectedLast = false;
+            }
+
+            // check if null:
             if (selected != null) {
                 lblSelectedItem.Text = $"[W] [{selected.PluginName}] {selected.Item}";
-            }
 
-            // upon selection, check all the checkboxes with selected kwds
-            foreach (Control ctrl in gbKWDs.Controls) {
-                if (ctrl is CheckBox cb) {
-                    cb.Checked = false;
-                }
-            }
-
-            foreach (string kwd in selected.Keywords) {
+                // upon selection, check all the checkboxes with selected kwds
                 foreach (Control ctrl in gbKWDs.Controls) {
-                    if (ctrl is CheckBox cb && cb.Tag.ToString() == kwd) {
-                        cb.Checked = true;
+                    if (ctrl is CheckBox cb) {
+                        cb.Checked = false;
+                    }
+                }
+
+                foreach (string kwd in selected.Keywords) {
+                    foreach (Control ctrl in gbKWDs.Controls) {
+                        if (ctrl is CheckBox cb && cb.Tag.ToString() == kwd) {
+                            cb.Checked = true;
+                        }
                     }
                 }
             }

@@ -842,7 +842,7 @@
             // 
             lblWatermark.AutoSize = true;
             lblWatermark.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblWatermark.Location = new Point(377, 642);
+            lblWatermark.Location = new Point(377, 646);
             lblWatermark.Name = "lblWatermark";
             lblWatermark.Size = new Size(135, 21);
             lblWatermark.TabIndex = 12;
@@ -870,12 +870,11 @@
             // 
             // lblSelectedItem
             // 
-            lblSelectedItem.AutoSize = true;
             lblSelectedItem.BackColor = Color.Transparent;
             lblSelectedItem.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblSelectedItem.Location = new Point(12, 620);
             lblSelectedItem.Name = "lblSelectedItem";
-            lblSelectedItem.Size = new Size(61, 21);
+            lblSelectedItem.Size = new Size(568, 21);
             lblSelectedItem.TabIndex = 51;
             lblSelectedItem.Text = "[none]";
             // 
