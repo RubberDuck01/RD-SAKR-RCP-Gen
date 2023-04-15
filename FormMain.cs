@@ -13,6 +13,8 @@ namespace RDRCPGen {
         public FormMain() {
             InitializeComponent();
             this.FormClosing += FormMain_FormClosing;
+            
+            btnRemove.Enabled = false;
         }
 
         // Load CSV:
@@ -58,7 +60,7 @@ namespace RDRCPGen {
 
                 // check if already exists:
                 if (existing != null) {
-                    var result = MessageBox.Show($"Looks like you've already added keywords to\n{existing.Item} (FormID: {existing.FormID}).\n\nDo you want to overwrite the previous record?", "RD's SAKR/RCP Gen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var result = MessageBox.Show($"Looks like you've already added keywords to\n{existing.Item} (FormID: {existing.FormID}).\n\nDo you want to overwrite it?", "RD's SAKR/RCP Gen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.No) {
                         return;
@@ -81,6 +83,7 @@ namespace RDRCPGen {
                 lbMods.Items.Add(modified.ToListBoxHuman());
                 pbStatus.BackgroundImage = Resources.Oxygen_ok48;
 
+                // clear checkboxes if KEEP checked:
                 if (!cbKeep.Checked) {
                     ClearCBstatus();
                 }
@@ -98,7 +101,7 @@ namespace RDRCPGen {
                 }
 
             } catch (Exception ex) {
-                MessageBox.Show($"Something went wrong...\n\nMore info:\n{ex.Message}", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Something went wrong.\n\nCouldn't apply selection!", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 pbStatus.BackgroundImage = Resources.Oxygen_notok48;
             }
         }
@@ -109,6 +112,11 @@ namespace RDRCPGen {
             if (selectedIndex >= 0) {
                 mods.RemoveAt(selectedIndex);
                 lbMods.Items.RemoveAt(selectedIndex);
+                
+                lblSelectedItem.Text = "Object removed! Please select a new one.";
+                btnApply.Enabled = false;
+            } else {
+                MessageBox.Show("Couldn't remove anything, object NOT selected!", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -122,6 +130,8 @@ namespace RDRCPGen {
         }
 
         private void lbOriginals_SelectedIndexChanged(object sender, EventArgs e) {
+            btnApply.Enabled = true;
+
             string selectedStr = lbOriginals.SelectedItem as string;
             Record selected = originals.FirstOrDefault(x => x.ToListBoxHuman() == selectedStr);
 
@@ -129,6 +139,15 @@ namespace RDRCPGen {
             if (!lbOriginalsSelectedLast) {
                 lbMods.ClearSelected();
                 lbOriginalsSelectedLast = true;
+            }
+
+            // clear checkboxes:
+            if (!cbKeep.Checked) {
+                foreach (Control ctrl in gbKWDs.Controls) {
+                    if (ctrl is CheckBox cb) {
+                        cb.Checked = false;
+                    }
+                }
             }
 
             if (selected != null) {
@@ -150,6 +169,8 @@ namespace RDRCPGen {
 
             // check if null:
             if (selected != null) {
+                btnRemove.Enabled = true;
+                btnApply.Enabled = false;
                 lblSelectedItem.Text = $"[W] [{selected.PluginName}] {selected.Item}";
 
                 // upon selection, check all the checkboxes with selected kwds
@@ -166,6 +187,11 @@ namespace RDRCPGen {
                         }
                     }
                 }
+
+                pbStatus.BackgroundImage = Resources.Oxygen_ok48;
+            } else {
+                btnRemove.Enabled = false;
+                pbStatus.BackgroundImage = Resources.Oxygen_notok48;
             }
         }
 
