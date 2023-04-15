@@ -110,12 +110,20 @@ namespace RDRCPGen {
         private void btnRemove_Click(object sender, EventArgs e) {
             int selectedIndex = lbMods.SelectedIndex;
             if (selectedIndex >= 0) {
+                // remove selected:
                 mods.RemoveAt(selectedIndex);
                 lbMods.Items.RemoveAt(selectedIndex);
                 
+                // indicate the changes:
                 lblSelectedItem.Text = "Object removed! Please select a new one.";
+                lblSelectedItem.ForeColor = Color.Red;
                 btnApply.Enabled = false;
+
+                // clear checkboxes:
+                ClearCBstatus();
+
             } else {
+                lblSelectedItem.ForeColor = Color.Black;
                 MessageBox.Show("Couldn't remove anything, object NOT selected!", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -125,6 +133,8 @@ namespace RDRCPGen {
             foreach (var control in gbKWDs.Controls) {
                 if (control is CheckBox cb) {
                     cb.Checked = false;
+                    cb.ForeColor = Color.Black; // ?
+                    cb.Font = new Font(cb.Font, FontStyle.Regular);
                 }
             }
         }
@@ -146,12 +156,15 @@ namespace RDRCPGen {
                 foreach (Control ctrl in gbKWDs.Controls) {
                     if (ctrl is CheckBox cb) {
                         cb.Checked = false;
+                        cb.ForeColor = Color.Black;
+                        cb.Font = new Font(cb.Font, FontStyle.Regular);
                     }
                 }
             }
 
             if (selected != null) {
                 lblSelectedItem.Text = $"[{selected.PluginName}] {selected.Item}";
+                lblSelectedItem.ForeColor = Color.DarkCyan;
             }
 
             pbStatus.BackgroundImage = Resources.Oxygen_go48;
@@ -172,11 +185,14 @@ namespace RDRCPGen {
                 btnRemove.Enabled = true;
                 btnApply.Enabled = false;
                 lblSelectedItem.Text = $"[W] [{selected.PluginName}] {selected.Item}";
+                lblSelectedItem.ForeColor = Color.ForestGreen;
 
                 // upon selection, check all the checkboxes with selected kwds
                 foreach (Control ctrl in gbKWDs.Controls) {
                     if (ctrl is CheckBox cb) {
                         cb.Checked = false;
+                        cb.ForeColor = Color.Black;
+                        cb.Font = new Font(cb.Font, FontStyle.Regular);
                     }
                 }
 
@@ -184,12 +200,15 @@ namespace RDRCPGen {
                     foreach (Control ctrl in gbKWDs.Controls) {
                         if (ctrl is CheckBox cb && cb.Tag.ToString() == kwd) {
                             cb.Checked = true;
+                            cb.ForeColor = Color.DeepPink;
+                            cb.Font = new Font(cb.Font, FontStyle.Bold);
                         }
                     }
                 }
 
                 pbStatus.BackgroundImage = Resources.Oxygen_ok48;
             } else {
+                lblSelectedItem.ForeColor = Color.Black;
                 btnRemove.Enabled = false;
                 pbStatus.BackgroundImage = Resources.Oxygen_notok48;
             }
