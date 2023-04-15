@@ -855,7 +855,7 @@
             lblVer.Name = "lblVer";
             lblVer.Size = new Size(94, 15);
             lblVer.TabIndex = 13;
-            lblVer.Text = "v0.8.2 (14/04/23)";
+            lblVer.Text = "v0.8.2 (15/04/23)";
             // 
             // btnLoad
             // 
