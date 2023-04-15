@@ -13,8 +13,10 @@ namespace RDRCPGen {
         public FormMain() {
             InitializeComponent();
             this.FormClosing += FormMain_FormClosing;
-            
+
+            btnApply.Enabled = false;
             btnRemove.Enabled = false;
+            btnClear.Enabled = false;
         }
 
         // Load CSV:
@@ -29,6 +31,7 @@ namespace RDRCPGen {
                     string csvFilePath = openFileDialog.FileName;
                     string loadedFile = Path.GetFileName(csvFilePath);
                     lblLoadedFile.Text = loadedFile;
+                    lblLoadedFile.ForeColor = Color.Coral;
                     pbStatus.BackgroundImage = Resources.Oxygen_go48;
                     gbKWDs.Enabled = true;
 
@@ -40,6 +43,10 @@ namespace RDRCPGen {
                     foreach (Record item in originals) {
                         lbOriginals.Items.Add(item.ToListBoxHuman());
                     }
+
+                    lblSelectedItem.Text = "[none] - Select any item from CSV.";
+
+                    // btn apply?
                 }
             } catch (Exception ex) {
                 MessageBox.Show($"Something went wrong:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -69,7 +76,7 @@ namespace RDRCPGen {
                     mods.Remove(existing);
                     lbMods.Items.Remove(existing.ToListBoxHuman().ToString());
                 }
-                
+
                 // add modified:
                 foreach (Control ctrl in gbKWDs.Controls) {
                     if (ctrl is CheckBox cb && cb.Checked) {
@@ -87,7 +94,7 @@ namespace RDRCPGen {
                 if (!cbKeep.Checked) {
                     ClearCBstatus();
                 }
-                
+
                 // auto increment:
                 if (lbOriginals.Items.Count == 0) {
                     MessageBox.Show("Couldn't find any items in this CSV. Did you export the CSV properly, using 'RD_Export_FormIDs_SAKR.pas' script?\n\nTry again and if this message still shows up, report the issue immediately.\n\nThanks!", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -97,7 +104,9 @@ namespace RDRCPGen {
                 if (lbOriginals.SelectedIndex < lbOriginals.Items.Count - 1) {
                     lbOriginals.SelectedIndex++;
                 } else {
-                    MessageBox.Show("Reached end of loaded CSV.", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    btnApply.Enabled = false;
+                    btnClear.Enabled = false;
+                    MessageBox.Show("Reached end of loaded CSV.", "RD's SAKR/RCPGen", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
             } catch (Exception ex) {
@@ -113,7 +122,7 @@ namespace RDRCPGen {
                 // remove selected:
                 mods.RemoveAt(selectedIndex);
                 lbMods.Items.RemoveAt(selectedIndex);
-                
+
                 // indicate the changes:
                 lblSelectedItem.Text = "Object removed! Please select a new one.";
                 lblSelectedItem.ForeColor = Color.Red;
@@ -141,6 +150,7 @@ namespace RDRCPGen {
 
         private void lbOriginals_SelectedIndexChanged(object sender, EventArgs e) {
             btnApply.Enabled = true;
+            btnClear.Enabled = true;
 
             string selectedStr = lbOriginals.SelectedItem as string;
             Record selected = originals.FirstOrDefault(x => x.ToListBoxHuman() == selectedStr);
@@ -165,9 +175,19 @@ namespace RDRCPGen {
             if (selected != null) {
                 lblSelectedItem.Text = $"[{selected.PluginName}] {selected.Item}";
                 lblSelectedItem.ForeColor = Color.DarkCyan;
+                btnApply.Enabled = true;
+                btnClear.Enabled = true;
+                pbStatus.BackgroundImage = Resources.Oxygen_go48;
+            } else {
+                btnApply.Enabled = false;
+                btnClear.Enabled = false;
+                btnRemove.Enabled = false;
+
+                lblSelectedItem.Text = "No object selected!";
+                lblSelectedItem.ForeColor = Color.Red;
+                pbStatus.BackgroundImage = Resources.Oxygen_notok48;
             }
 
-            pbStatus.BackgroundImage = Resources.Oxygen_go48;
         }
 
         private void lbMods_SelectedIndexChanged(object sender, EventArgs e) {
@@ -184,6 +204,7 @@ namespace RDRCPGen {
             if (selected != null) {
                 btnRemove.Enabled = true;
                 btnApply.Enabled = false;
+                btnClear.Enabled = false;
                 lblSelectedItem.Text = $"[W] [{selected.PluginName}] {selected.Item}";
                 lblSelectedItem.ForeColor = Color.ForestGreen;
 
@@ -208,8 +229,11 @@ namespace RDRCPGen {
 
                 pbStatus.BackgroundImage = Resources.Oxygen_ok48;
             } else {
-                lblSelectedItem.ForeColor = Color.Black;
+                lblSelectedItem.Text = "No object selected!";
+                lblSelectedItem.ForeColor = Color.Red;
+                btnApply.Enabled = false;
                 btnRemove.Enabled = false;
+                btnClear.Enabled = false;
                 pbStatus.BackgroundImage = Resources.Oxygen_notok48;
             }
         }

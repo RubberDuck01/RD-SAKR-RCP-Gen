@@ -128,12 +128,11 @@
             // 
             // lblLoadedFile
             // 
-            lblLoadedFile.AutoSize = true;
             lblLoadedFile.BackColor = Color.Transparent;
             lblLoadedFile.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblLoadedFile.Location = new Point(67, 4);
             lblLoadedFile.Name = "lblLoadedFile";
-            lblLoadedFile.Size = new Size(52, 21);
+            lblLoadedFile.Size = new Size(804, 21);
             lblLoadedFile.TabIndex = 3;
             lblLoadedFile.Text = "[null]";
             // 
@@ -856,7 +855,7 @@
             lblVer.Name = "lblVer";
             lblVer.Size = new Size(94, 15);
             lblVer.TabIndex = 13;
-            lblVer.Text = "v0.7.4 (14/04/23)";
+            lblVer.Text = "v0.8.2 (14/04/23)";
             // 
             // btnLoad
             // 
@@ -937,7 +936,7 @@
             MaximizeBox = false;
             Name = "FormMain";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Rubber Duck's SAKR/RCPGen v0.7.4";
+            Text = "Rubber Duck's SAKR/RCPGen v0.8.2";
             gbKWDs.ResumeLayout(false);
             gbKWDs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbStatus).EndInit();
