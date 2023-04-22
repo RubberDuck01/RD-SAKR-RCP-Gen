@@ -102,6 +102,7 @@
             lbOriginals.ItemHeight = 15;
             lbOriginals.Location = new Point(12, 61);
             lbOriginals.Name = "lbOriginals";
+            lbOriginals.ScrollAlwaysVisible = true;
             lbOriginals.Size = new Size(416, 289);
             lbOriginals.TabIndex = 0;
             lbOriginals.SelectedIndexChanged += lbOriginals_SelectedIndexChanged;
@@ -114,6 +115,7 @@
             lbMods.ItemHeight = 15;
             lbMods.Location = new Point(456, 61);
             lbMods.Name = "lbMods";
+            lbMods.ScrollAlwaysVisible = true;
             lbMods.Size = new Size(416, 289);
             lbMods.TabIndex = 1;
             lbMods.SelectedIndexChanged += lbMods_SelectedIndexChanged;
@@ -935,6 +937,7 @@
             lblSelectedItem.BackColor = Color.Transparent;
             lblSelectedItem.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblSelectedItem.Location = new Point(12, 620);
+            lblSelectedItem.MaximumSize = new Size(0, 640);
             lblSelectedItem.Name = "lblSelectedItem";
             lblSelectedItem.Size = new Size(568, 21);
             lblSelectedItem.TabIndex = 51;
